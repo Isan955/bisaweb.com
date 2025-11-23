@@ -1912,6 +1912,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
+      // A. Inisialisasi AOS (Animasi Scroll)
       AOS.init({
         once: true,
         offset: 50,
@@ -1919,6 +1920,7 @@
         easing: "ease-out-cubic",
       });
 
+      // B. Script untuk Preloader
       window.addEventListener("load", function () {
         const preloader = document.getElementById("preloader");
         setTimeout(() => {
@@ -1929,11 +1931,23 @@
         }, 1500);
       });
 
+      // C. Script Menu Mobile (Hamburger) - DIPERBARUI
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
 
+      // 1. Ambil semua link di dalam menu mobile
+      const mobileLinks = document.querySelectorAll("#mobile-menu a");
+
+      // 2. Fungsi Toggle (Buka/Tutup) saat tombol hamburger diklik
       btn.addEventListener("click", () => {
         menu.classList.toggle("hidden");
+      });
+
+      // 3. Logic Baru: Tutup menu saat salah satu link diklik
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden"); // Tambahkan class 'hidden' untuk menyembunyikan menu
+        });
       });
     </script>
 

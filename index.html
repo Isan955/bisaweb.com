@@ -6,6 +6,30 @@
     <title>BisaWeb - Jasa Pembuatan Website & Sistem Profesional</title>
     <meta
       name="description"
+      content="Jasa pembuatan website profesional, sistem informasi, dan aplikasi mobile terpercaya. Tingkatkan omzet bisnis Anda bersama BisaWeb."
+    />
+    <meta
+      name="keywords"
+      content="jasa website, buat website murah, web developer indonesia, sistem erp, aplikasi android, seo friendly"
+    />
+    <meta name="author" content="BisaWeb Team" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="BisaWeb - Solusi Digital Terbaik untuk Bisnis"
+    />
+    <meta
+      property="og:description"
+      content="Bikin website keren, cepat, dan aman. Konsultasi gratis sekarang!"
+    />
+    <meta
+      property="og:image"
+      content="URL_GAMBAR_LOGO_ATAU_THUMBNAIL_ANDA.jpg"
+    />
+    <meta property="og:url" content="https://bisaweb.id/" />
+    <meta
+      name="description"
       content="Jasa pembuatan website, aplikasi, dan sistem manajemen terpercaya."
     />
 
@@ -17,6 +41,11 @@
     />
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+    />
 
     <script>
       tailwind.config = {
@@ -1577,12 +1606,14 @@
       </div>
     </section>
 
-    <section id="testimoni" class="py-24 bg-white relative">
+    <!-- <section id="testimoni" class="py-24 bg-white relative">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-          <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-brand-blue text-xs font-bold mb-4 shadow-sm">
-                    🤝 Bukti Nyata
-                </span> -->
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-50 text-brand-blue text-xs font-bold mb-4 shadow-sm"
+          >
+            🤝 Bukti Nyata
+          </span>
           <h2
             class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-brand-dark mb-4"
           >
@@ -1714,7 +1745,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section id="blog" class="py-20 bg-brand-light">
       <div class="container mx-auto px-6">
@@ -1912,7 +1943,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-      // A. Inisialisasi AOS (Animasi Scroll)
+      // --- A. INISIALISASI ANIMASI SCROLL (AOS) ---
       AOS.init({
         once: true,
         offset: 50,
@@ -1920,33 +1951,42 @@
         easing: "ease-out-cubic",
       });
 
-      // B. Script untuk Preloader
-      window.addEventListener("load", function () {
+      // --- B. LOGIKA PRELOADER (ANTI MACET) ---
+      // Fungsi untuk menghilangkan loading screen
+      function removePreloader() {
         const preloader = document.getElementById("preloader");
-        setTimeout(() => {
-          preloader.classList.add("hidden-preloader");
+        if (preloader) {
+          preloader.style.transition = "opacity 0.5s ease";
+          preloader.style.opacity = "0"; // Fade out
           setTimeout(() => {
-            preloader.style.display = "none";
+            preloader.style.display = "none"; // Hilangkan total
           }, 500);
-        }, 1500);
-      });
+        }
+      }
 
-      // C. Script Menu Mobile (Hamburger) - DIPERBARUI
+      // Cara 1: Hilang saat semua gambar selesai dimuat (Normal)
+      window.addEventListener("load", removePreloader);
+
+      // Cara 2: PENGAMAN (Force Close) - Hilang paksa setelah 3 detik
+      // (Jaga-jaga jika ada gambar error yang bikin loading macet)
+      setTimeout(removePreloader, 3000);
+
+      // --- C. LOGIKA MENU MOBILE (Auto Close) ---
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
+      const mobileLinks = document.querySelectorAll("#mobile-menu a"); // Ambil semua link
 
-      // 1. Ambil semua link di dalam menu mobile
-      const mobileLinks = document.querySelectorAll("#mobile-menu a");
+      // Buka/Tutup saat tombol hamburger diklik
+      if (btn && menu) {
+        btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      }
 
-      // 2. Fungsi Toggle (Buka/Tutup) saat tombol hamburger diklik
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-
-      // 3. Logic Baru: Tutup menu saat salah satu link diklik
+      // Tutup menu otomatis saat salah satu link diklik
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          menu.classList.add("hidden"); // Tambahkan class 'hidden' untuk menyembunyikan menu
+          menu.classList.add("hidden");
         });
       });
     </script>
